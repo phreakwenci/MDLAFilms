@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Director's Commentary — MDLA Films</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mdla-black': '#0a0a0f',
+                        'mdla-slate': '#13131f',
+                        'mdla-purple': '#4c1d95',
+                        'mdla-purple-light': '#6d28d9',
+                        'mdla-gold': '#d4af37',
+                        'mdla-gold-dim': '#b8941f',
+                        'mdla-gray': '#94a3b8',
+                        'mdla-light': '#e5e5e5'
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'Georgia', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0a0a0f;
+            color: #e5e5e5;
+        }
+        
+        .film-grain {
+            position: relative;
+        }
+        
+        .film-grain::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .series-tag {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased film-grain">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-mdla-black/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 border border-mdla-gold/50 flex items-center justify-center group-hover:border-mdla-gold transition-colors">
+                        <span class="font-serif text-mdla-gold font-bold text-lg">M</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif text-mdla-light text-lg leading-none tracking-wide">MDLA Films</span>
+                        <span class="text-xs text-mdla-gray uppercase tracking-widest mt-1">A Director's Archive</span>
+                    </div>
+                </a>
+                
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="archive.html" class="text-mdla-gray hover:text-mdla-gold transition-colors text-sm uppercase tracking-widest">The Archive</a>
+                    <a href="commentary.html" class="text-mdla-gold text-sm uppercase tracking-widest">Commentary</a>
+                    <a href="about.html" class="text-mdla-gray hover:text-mdla-gold transition-colors text-sm uppercase tracking-widest">About</a>
+                    <a href="https://youtube.com" target="_blank" class="flex items-center gap-2 text-mdla-black bg-mdla-gold hover:bg-mdla-gold-dim px-4 py-2 text-sm font-medium transition-colors">
+                        <i data-lucide="youtube" class="w-4 h-4"></i>
+                        Subscribe
+                    </a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="md:hidden text-mdla-light">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-mdla-slate border-b border-white/10">
+            <div class="px-6 py-4 space-y-4">
+                <a href="archive.html" class="block text-mdla-gray hover:text-mdla-gold transition-colors">The Archive</a>
+                <a href="commentary.html" class="block text-mdla-gold">Commentary</a>
+                <a href="about.html" class="block text-mdla-gray hover:text-mdla-gold transition-colors">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="pt-32 pb-12 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <span class="text-mdla-gold uppercase tracking-[0.3em] text-xs mb-4 block">Analysis & Technique</span>
+            <h1 class="font-serif text-5xl md:text-6xl text-mdla-light mb-6">Director's Commentary</h1>
+            <p class="text-mdla-gray text-lg max-w-2xl mx-auto mb-8">
+                Documenting the craft in real-time. What worked, what failed, and what I learned from each experiment. Subscribe for weekly deep-dives into directing, cinematography, and the business of artistic survival.
+            </p>
+            <a href="https://youtube.com" target="_blank" class="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-sm uppercase tracking-widest transition-all">
+                <i data-lucide="youtube" class="w-5 h-5"></i>
+                Subscribe on YouTube
+            </a>
+        </div>
+    </header>
+
+    <!-- Series Navigation -->
+    <section class="px-6 py-8 border-y border-white/10 bg-mdla-slate/20">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="series-tag text-mdla-gold px-4 py-2 text-xs uppercase tracking-widest hover:bg-mdla-gold/20 transition-colors rounded-full">All Series</button>
+                <button class="text-mdla-gray hover:text-mdla-light px-4 py-2 text-xs uppercase tracking-widest transition-colors">Visual Composition</button>
+                <button class="text-mdla-gray hover:text-mdla-light px-4 py-2 text-xs uppercase tracking-widest transition-colors">Directing Actors</button>
+                <button class="text-mdla-gray hover:text-mdla-light px-4 py-2 text-xs uppercase tracking-widest transition-colors">Editing Philosophy</button>
+                <button class="text-mdla-gray hover:text-mdla-light px-4 py-2 text-xs uppercase tracking-widest transition-colors">Career Survival</button>
+                <button class="text-mdla-gray hover:text-mdla-light px-4 py-2 text-xs uppercase tracking-widest transition-colors">Gear & Technical</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commentary Grid -->
+    <section class="px-6 py-16">
+        <div class="max-w-7xl mx-auto space-y-16">
+            
+            <!-- Series: Visual Composition -->
+            <div>
+                <div class="flex items-center gap-4 mb-8">
+                    <h2 class="font-serif text-2xl text-mdla-light">Visual Composition</h2>
+                    <div class="h-px flex-1 bg-white/10"></div>
+                    <span class="text-xs text-mdla-gray uppercase tracking-widest">6 Videos</span>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Video 1 -->
+                    <div class="bg-mdla-slate/30 border border-white/10 rounded-lg overflow-hidden hover:border-mdla-gold/50 transition-colors">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1" title="Stealing from Painters" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-lg text-mdla-light mb-2">Stealing from Painters: Vermeer in Modern Cinema</h3>
+                            <p class="text-sm text-mdla-gray mb-4">How Dutch Golden Age lighting techniques translate to digital cinematography in low-budget filmmaking. Window light as character.</p>
+                            <div class="flex items-center gap-2 text-xs text-mdla-gold">
+                                <i data-lucide="clock" class="w-3 h-3"></i>
+                                <span>24 min</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 2 -->
+                    <div class="bg-mdla-slate/30 border border-white/10 rounded-lg overflow-hidden hover:border-mdla-gold/50 transition-colors">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1" title="The Frame Within the Frame" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-lg text-mdla-light mb-2">The Frame Within the Frame</h3>
+                            <p class="text-sm text-mdla-gray mb-4">Using architecture and natural lines to create psychological tension. A breakdown of "Suburban Static" key frames.</p>
+                            <div class="flex items-center gap-2 text-xs text-mdla-gold">
+                                <i data-lucide="clock" class="w-3 h-3"></i>
+                                <span>18 min</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 3 -->
+                    <div class="bg-mdla-slate/30 border border-white/10 rounded-lg overflow-hidden hover:border-mdla-gold/50 transition-colors">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1" title="Color as Narrative" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-lg text-mdla-light mb-2">Color as Narrative: The LA Palette</h3>
+                            <p class="text-sm text-mdla-gray mb-4">Why I switched from the muted greens of Maryland to the neon-noir of Los Angeles. Color grading philosophy.</p>
+                            <div class="flex items-center gap-2 text-xs text-mdla-gold">
+                                <i data-lucide="clock" class="w-3 h-3"></i>
+                                <span>32 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Series: Directing Actors -->
+            <div>
+                <div class="flex items-center gap-4 mb-8">
+                    <h2 class="font-serif text-2xl text-mdla-light">Directing Actors</h2>
+                    <div class="h-px flex-1 bg-white/10"></div>
+                    <span class="text-xs text-mdla-gray uppercase tracking-widest">4 Videos</span>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Video 4 -->
+                    <div class="bg-mdla-slate/30 border border-white/10 rounded-lg overflow-hidden hover:border-mdla-gold/50 transition-colors">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1" title="The Silence Technique" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-lg text-mdla-light mb-2">The Silence Technique</h3>
+                            <p class="text-sm text-mdla-gray mb-4">Why I stopped explaining motivation and started using physical triggers to elicit authentic performance.</p>
+                            <div class="flex items-center gap-2 text-xs text-mdla-gold">
+                                <i data-lucide="clock" class="w-3 h-3"></i>
+                                <span>28 min</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 5 -->
+                    <div class="bg-mdla-slate/30 border border-white/10 rounded-lg overflow-hidden hover:border-mdla-gold/50 transition-colors">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1" title="Casting Without Money" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-lg text-mdla-light mb-2">Casting Without Money</h3>
+                            <p class="text-sm text-mdla-gray mb-4">How to attract talented actors to no-budget projects. The psychology of the self-tape and the chemistry read.</p>
+                            <div class="flex items-center gap-2 text-xs text-mdla-gold">
+                                <i data-lucide="clock" class="w-3 h-3"></i>
+                                <span>41 min</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 6 -->
+                    <div class="bg-mdla-slate/30 border border-white/10 rounded-lg overflow-hidden hover:border-mdla-gold/50 transition-colors">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1" title="Working with Non-Actors" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-lg text-mdla-light mb-2">Working with Non-Actors</h3>
+                            <p class="text-sm text-mdla-gray mb-4">The documentary approach to narrative. Lessons from "Sunday Dinner" applied to scripted work.</p>
+                            <div class="flex items-center gap-2 text-xs text-mdla-gold">
+                                <i data-lucide="clock" class="w-3 h-3"></i>
+                                <span>19 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Series: Career Survival -->
+            <div>
+                <div class="flex items-center gap-4 mb-8">
+                    <h2 class="font-serif text-2xl text-mdla-light">Career Survival</h2>
+                    <div class="h-px flex-1 bg-white/10"></div>
+                    <span class="text-xs text-mdla-gray uppercase tracking-widest">3 Videos</span>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Video 7 -->
+                    <div class="bg-mdla-slate/30 border border-white/10 rounded-lg overflow-hidden hover:border-mdla-gold/50 transition-colors">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modest
