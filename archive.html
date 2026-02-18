@@ -1,32 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Archive — MDLA Films</title>
+    <meta name="description" content="MDLA Films Archive - Complete chronological filmography with director's commentary and technical details.">
+    <title>Archive — MDLA Films</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'mdla-black': '#0a0a0f',
-                        'mdla-slate': '#13131f',
-                        'mdla-purple': '#4c1d95',
-                        'mdla-purple-light': '#6d28d9',
-                        'mdla-gold': '#d4af37',
-                        'mdla-gold-dim': '#b8941f',
-                        'mdla-gray': '#94a3b8',
-                        'mdla-light': '#e5e5e5'
+                        background: '#0a0a0f',
+                        surface: '#13131f',
+                        accent: {
+                            purple: '#6d28d9',
+                            purpleDark: '#4c1d95',
+                            gold: '#d4af37'
+                        },
+                        text: {
+                            primary: '#e5e5e5',
+                            secondary: '#94a3b8',
+                            muted: '#64748b'
+                        }
                     },
                     fontFamily: {
-                        'serif': ['Playfair Display', 'Georgia', 'serif'],
-                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif']
                     }
                 }
             }
@@ -40,326 +46,301 @@
         }
         
         .film-grain {
-            position: relative;
-        }
-        
-        .film-grain::before {
-            content: "";
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.03;
             pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
         
-        .hover-lift {
+        .film-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .hover-lift:hover {
+        .film-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 40px -15px rgba(76, 29, 149, 0.3);
+            box-shadow: 0 20px 40px -15px rgba(109, 40, 217, 0.15);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #d4af37;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .filter-btn {
+            transition: all 0.3s ease;
         }
         
         .filter-btn.active {
-            background-color: #d4af37;
-            color: #0a0a0f;
-            border-color: #d4af37;
+            background-color: #6d28d9;
+            color: white;
+            border-color: #6d28d9;
         }
         
-        .era-maryland { border-left: 3px solid #6d28d9; }
-        .era-la { border-left: 3px solid #d4af37; }
-        
-        .hidden-film { display: none; }
+        .hidden-film {
+            display: none;
+        }
     </style>
 </head>
-<body class="font-sans antialiased film-grain">
-
+<body class="font-sans antialiased selection:bg-accent-purple selection:text-white">
+    <div class="film-grain"></div>
+    
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-mdla-black/90 backdrop-blur-md border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <a href="index.html" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 border border-mdla-gold/50 flex items-center justify-center group-hover:border-mdla-gold transition-colors">
-                        <span class="font-serif text-mdla-gold font-bold text-lg">M</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="font-serif text-mdla-light text-lg leading-none tracking-wide">MDLA Films</span>
-                        <span class="text-xs text-mdla-gray uppercase tracking-widest mt-1">A Director's Archive</span>
-                    </div>
-                </a>
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-background/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="font-serif text-2xl font-medium tracking-tight text-text-primary hover:text-accent-gold transition-colors">
+                        MDLA Films
+                    </a>
+                </div>
                 
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="archive.html" class="text-mdla-gold text-sm uppercase tracking-widest">The Archive</a>
-                    <a href="commentary.html" class="text-mdla-gray hover:text-mdla-gold transition-colors text-sm uppercase tracking-widest">Commentary</a>
-                    <a href="about.html" class="text-mdla-gray hover:text-mdla-gold transition-colors text-sm uppercase tracking-widest">About</a>
-                    <a href="https://youtube.com" target="_blank" class="flex items-center gap-2 text-mdla-black bg-mdla-gold hover:bg-mdla-gold-dim px-4 py-2 text-sm font-medium transition-colors">
-                        <i data-lucide="youtube" class="w-4 h-4"></i>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="archive.html" class="nav-link text-text-primary transition-colors text-sm uppercase tracking-wider border-b-2 border-accent-gold pb-1">Archive</a>
+                    <a href="commentary.html" class="nav-link text-text-secondary hover:text-text-primary transition-colors text-sm uppercase tracking-wider">Commentary</a>
+                    <a href="about.html" class="nav-link text-text-secondary hover:text-text-primary transition-colors text-sm uppercase tracking-wider">About</a>
+                    <a href="https://www.youtube.com/@mdlafilms" target="_blank" class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded transition-colors">
+                        <i data-lucide="youtube" class="w-4 h-4 mr-2"></i>
                         Subscribe
                     </a>
                 </div>
                 
-                <button id="mobile-menu-btn" class="md:hidden text-mdla-light">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-text-primary hover:text-accent-gold transition-colors">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
             </div>
         </div>
         
-        <div id="mobile-menu" class="hidden md:hidden bg-mdla-slate border-b border-white/10">
+        <div id="mobile-menu" class="hidden md:hidden bg-surface border-b border-white/10">
             <div class="px-6 py-4 space-y-4">
-                <a href="archive.html" class="block text-mdla-gold">The Archive</a>
-                <a href="commentary.html" class="block text-mdla-gray hover:text-mdla-gold transition-colors">Commentary</a>
-                <a href="about.html" class="block text-mdla-gray hover:text-mdla-gold transition-colors">About</a>
+                <a href="archive.html" class="block text-text-primary">Archive</a>
+                <a href="commentary.html" class="block text-text-secondary hover:text-text-primary">Commentary</a>
+                <a href="about.html" class="block text-text-secondary hover:text-text-primary">About</a>
+                <a href="https://www.youtube.com/@mdlafilms" target="_blank" class="block text-red-500">YouTube Subscribe</a>
             </div>
         </div>
     </nav>
 
     <!-- Header -->
-    <header class="pt-32 pb-12 px-6">
+    <section class="pt-32 pb-12 px-6">
         <div class="max-w-7xl mx-auto">
-            <span class="text-mdla-gold uppercase tracking-[0.3em] text-xs mb-4 block">Chronological</span>
-            <h1 class="font-serif text-5xl md:text-6xl text-mdla-light mb-4">The Archive</h1>
-            <p class="text-mdla-gray text-lg max-w-2xl">Every film is an experiment. Each entry documents the technical approach, the creative failures, and the evolution of craft from Maryland to Los Angeles.</p>
-        </div>
-    </header>
-
-    <!-- Filters -->
-    <section class="px-6 pb-12 sticky top-20 z-40 bg-mdla-black/95 backdrop-blur-md border-b border-white/10 py-4 -mt-4">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center gap-4">
-            <span class="text-xs uppercase tracking-widest text-mdla-gray mr-2">Filter:</span>
-            
-            <button class="filter-btn active px-4 py-2 border border-white/20 text-xs uppercase tracking-widest hover:border-mdla-gold hover:text-mdla-gold transition-all rounded-full" data-filter="all">
-                All Films
-            </button>
-            
-            <div class="h-4 w-px bg-white/20"></div>
-            
-            <button class="filter-btn px-4 py-2 border border-white/20 text-xs uppercase tracking-widest hover:border-mdla-purple hover:text-mdla-purple-light transition-all rounded-full" data-filter="maryland">
-                Maryland Era
-            </button>
-            <button class="filter-btn px-4 py-2 border border-white/20 text-xs uppercase tracking-widest hover:border-mdla-gold hover:text-mdla-gold transition-all rounded-full" data-filter="la">
-                Los Angeles
-            </button>
-            
-            <div class="h-4 w-px bg-white/20"></div>
-            
-            <button class="filter-btn px-4 py-2 border border-white/20 text-xs uppercase tracking-widest hover:border-white hover:text-white transition-all rounded-full" data-filter="16mm">
-                16mm
-            </button>
-            <button class="filter-btn px-4 py-2 border border-white/20 text-xs uppercase tracking-widest hover:border-white hover:text-white transition-all rounded-full" data-filter="35mm">
-                35mm
-            </button>
-            <button class="filter-btn px-4 py-2 border border-white/20 text-xs uppercase tracking-widest hover:border-white hover:text-white transition-all rounded-full" data-filter="digital">
-                Digital
-            </button>
+            <h1 class="font-serif text-5xl md:text-6xl text-text-primary mb-4">The Archive</h1>
+            <p class="text-text-secondary text-lg max-w-2xl">Chronological filmography. Every project documented with technical details, reflections, and behind-the-scenes analysis.</p>
         </div>
     </section>
 
-    <!-- Film Grid -->
-    <section class="px-6 py-12">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="film-grid">
-                
-                <!-- Film 1: Maryland -->
-                <article class="film-card group hover-lift era-maryland" data-era="maryland" data-format="16mm" data-theme="coming-of-age">
-                    <a href="film-detail.html" class="block">
-                        <div class="relative aspect-[4/3] overflow-hidden rounded-sm mb-4 bg-black border border-white/10">
-                            <img src="https://static.photos/nature/640x480/501" alt="Basement Lights" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500">
-                            <div class="absolute top-4 left-4 bg-mdla-purple/90 backdrop-blur-sm text-white text-xs px-3 py-1 uppercase tracking-wider">Maryland • 2018</div>
-                        </div>
-                        <div class="pl-4">
-                            <h3 class="font-serif text-2xl text-mdla-light group-hover:text-mdla-gold transition-colors mb-2">Basement Lights</h3>
-                            <div class="flex items-center gap-3 text-xs text-mdla-gray uppercase tracking-widest mb-3">
-                                <span>16mm</span>
-                                <span class="w-1 h-1 rounded-full bg-mdla-gray"></span>
-                                <span>12 min</span>
-                                <span class="w-1 h-1 rounded-full bg-mdla-gray"></span>
-                                <span>Narrative</span>
-                            </div>
-                            <p class="text-mdla-gray text-sm line-clamp-2 mb-3">First experiments with natural lighting in confined spaces. The beginning of the obsession with shadows.</p>
-                            <div class="flex items-center gap-2 text-xs text-mdla-gold">
-                                <i data-lucide="play-circle" class="w-4 h-4"></i>
-                                <span>Watch Film + Commentary</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
+<div class="flex flex-wrap gap-3 items-center">
+    <span class="text-text-muted text-sm uppercase tracking-wider mr-4">Filter:</span>
+    
+    <button class="filter-btn active px-4 py-2 border border-white/20 rounded text-sm text-text-secondary hover:border-accent-gold hover:text-accent-gold" data-filter="all">
+        All Projects
+    </button>
+    
+    <button class="filter-btn px-4 py-2 border border-white/20 rounded text-sm text-text-secondary hover:border-accent-gold hover:text-accent-gold" data-filter="short">
+        Shorts
+    </button>
+    
+    <button class="filter-btn px-4 py-2 border border-white/20 rounded text-sm text-text-secondary hover:border-accent-gold hover:text-accent-gold" data-filter="experimental">
+        Experimental
+    </button>
+    
+    <button class="filter-btn px-4 py-2 border border-white/20 rounded text-sm text-text-secondary hover:border-accent-gold hover:text-accent-gold" data-filter="casestudy">
+        Case Studies
+    </button>
+</div>
 
-                <!-- Film 2: Maryland -->
-                <article class="film-card group hover-lift era-maryland" data-era="maryland" data-format="digital" data-theme="family">
-                    <a href="film-detail.html" class="block">
-                        <div class="relative aspect-[4/3] overflow-hidden rounded-sm mb-4 bg-black border border-white/10">
-                            <img src="https://static.photos/indoor/640x480/502" alt="Sunday Dinner" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500">
-                            <div class="absolute top-4 left-4 bg-mdla-purple/90 backdrop-blur-sm text-white text-xs px-3 py-1 uppercase tracking-wider">Maryland • 2019</div>
-                        </div>
-                        <div class="pl-4">
-                            <h3 class="font-serif text-2xl text-mdla-light group-hover:text-mdla-gold transition-colors mb-2">Sunday Dinner</h3>
-                            <div class="flex items-center gap-3 text-xs text-mdla-gray uppercase tracking-widest mb-3">
-                                <span>Digital</span>
-                                <span class="w-1 h-1 rounded-full bg-mdla-gray"></span>
-                                <span>8 min</span>
-                                <span class="w-1 h-1 rounded-full bg-mdla-gray"></span>
-                                <span>Documentary</span>
-                            </div>
-                            <p class="text-mdla-gray text-sm line-clamp-2 mb-3">Single-take experiment. My grandmother's kitchen as a stage. Learning to direct non-actors.</p>
-                            <div class="flex items-center gap-2 text-xs text-mdla-gold">
-                                <i data-lucide="play-circle" class="w-4 h-4"></i>
-                                <span>Watch Film + Commentary</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- Film 3: Maryland -->
-                <article class="film-card group hover-lift era-maryland" data-era="maryland" data-format="16mm" data-theme="isolation">
-                    <a href="film-detail.html" class="block">
-                        <div class="relative aspect-[4/3] overflow-hidden rounded-sm mb-4 bg-black border border-white/10">
-                            <img src="https://static.photos/nature/640x480/101" alt="Suburban Static" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500">
-                            <div class="absolute top-4 left-4 bg-mdla-purple/90 backdrop-blur-sm text-white text-xs px-3 py-1 uppercase tracking-wider">Maryland • 2019</div>
-                        </div>
-                        <div class="pl-4">
-                            <h3 class="font-serif text-2xl text-mdla-light group-hover:text-mdla-gold transition-colors mb-2">Suburban Static</h3>
-                            <div class="flex items-center gap-3 text-xs text-mdla-gray uppercase tracking-widest mb-3">
-                                <span>16mm</span>
-                                <span class="w-1 h-1 rounded-full bg-mdla-gray"></span>
-                                <span>15 min</span>
-                                <span class="w-1 h-1 rounded-full bg-mdla-gray"></span>
-                                <span>Narrative</span>
-                            </div>
-                            <p class="text-mdla-gray text-sm line-clamp-2 mb-3">The last Maryland film. A meditation on suburban isolation and the quiet violence of growing up in place.</p>
-                            <div class="flex items-center gap-2 text-xs text-mdla-gold">
-                                <i data-lucide="play-circle" class="w-4 h-4"></i>
-                                <span>Watch Film + Commentary</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- Film 4: Transitional -->
-                <article class="film-card group hover-lift era-la" data-era="la" data-format="digital" data-theme="travel">
-                    <a href="film-detail.html" class="block">
-                        <div class="relative aspect-[4/3] overflow-hidden rounded-sm mb-4 bg-black border border-white/10">
-                            <img src="https://static.photos/cityscape/640x480/202" alt="Interstate Ghosts" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500">
-                            <div class="absolute top-4 left-4 bg-mdla-gold/90 backdrop-blur-sm text-mdla-black text-xs px-3 py-1 uppercase tracking-wider font-semibold">Transitional • 2021</div>
-                        </div>
-                        <div class="pl-4">
-                            <h3 class="font-serif text-2xl text-mdla-light group-hover:text-mdla-gold transition-colors mb-2">Interstate Ghosts</h3>
-                            <div class="flex items-center gap-3 text-xs text-mdla-gray uppercase tracking-widest mb-3">
-                                <span>Digital</span>
-                                <span class="w-1 h-1 rounded-full bg-mdla-gray"></span>
-                                <span>Feature • 78 min</span>
-                                <span class="w-1 h-1 rounded-full bg-mdla-gray"></span>
-                                <span>Experimental</span>
-                            </div>
-                            <p class="text-mdla-gray text-sm line-clamp-2 mb-3">The journey west, documented in fragments. Shot on a GH5 during the actual move. Non-linear structure experiment.</p>
-                            <div class="flex items-center gap-2 text-xs text-mdla-gold">
-                                <i data-lucide="play-circle" class="w-4 h-4"></i>
-                                <span>Watch Film + Commentary</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- Film 5: LA -->
-                <article class="film-card group hover-lift era-la" data-era="la" data-format="digital" data-theme="industry">
-                    <a href="film-detail.html" class="block">
-                        <div class="relative aspect-[4/3] overflow-hidden rounded-sm mb-4 bg-black border border-white/10">
-                            <img src="https://static.photos/indoor/640x480/601" alt="The Waiting Room" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500">
-                            <div class="absolute top-4 left-4 bg-mdla-gold/90 backdrop-blur-sm text-mdla-black text-xs px-3 py-1 uppercase tracking-wider font-semibold">Los Angeles • 2022</div>
-                        </div>
-                        <div class="pl-4">
-                            <h3 class="font-serif text-2xl text-mdla-light group-hover:text-mdla-gold transition-colors mb-2">The Waiting Room</h3>
-                            <div class="flex items-center gap-3 text-xs text-mdla-gray uppercase tracking-widest mb-3">
-                                <span>Digital</span>
-                                <span class="w-1 h-1 rounded-full bg-mdla-gray"></span>
-                                <span>22 min</span>
-                                <span class="w-1 h-1 rounded-full bg-mdla-gray"></span>
-                                <span>Narrative</span>
-                            </div>
-                            <p class="text-mdla-gray text-sm line-clamp-2 mb-3">First LA production. Casting director waiting rooms as purgatory. Learning to work with professional actors.</p>
-                            <div class="flex items-center gap-2 text-xs text-mdla-gold">
-                                <i data-lucide="play-circle" class="w-4 h-4"></i>
-                                <span>Watch Film + Commentary</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- Film 6: LA -->
-                <article class="film-card group hover-lift era-la" data-era="la" data-format="35mm" data-theme="relationships">
-                    <a href="film-detail.html" class="block">
-                        <div class="relative aspect-[4/3] overflow-hidden rounded-sm mb-4 bg-black border border-white/10">
-                            <img src="https://static.photos/minimal/640x480/303" alt="The Canyon Echo" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500">
-                            <div class="absolute top-4 left-4 bg-mdla-gold/90 backdrop-blur-sm text-mdla-black text-xs px-3 py-1 uppercase tracking-wider font-semibold">Los Angeles • 2024</div>
-                            <div class="absolute top-4 right-4 bg-white text-mdla-black text-xs px-2 py-1 uppercase tracking-wider font-bold text-[10px]">Award Winner</div>
-                        </div>
-                        <div class="pl-4">
-                            <h3 class="font-serif text-2xl text-mdla-light group-hover:text-mdla-gold transition-colors mb-2">The Canyon Echo</h3>
-                            <div class="flex items-center gap-3 text-xs text-mdla-gray uppercase tracking-widest mb-3">
-                                <span>35mm</span>
-                                <span class="w-1 h-1 rounded-full bg-mdla-gray"></span>
-                                <span>18 min</span>
-                                <span class="w-1 h-1 rounded-full bg-mdla-gray"></span>
-                                <span>Narrative</span>
-                            </div>
-                            <p class="text-mdla-gray text-sm line-clamp-2 mb-3">Three strangers, one apartment complex, 48 hours. Chamber drama in widescreen. First 35mm shoot.</p>
-                            <div class="flex items-center gap-2 text-xs text-mdla-gold">
-                                <i data-lucide="play-circle" class="w-4 h-4"></i>
-                                <span>Watch Film + Commentary</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- Film 7: LA -->
-                <article class="film-card group hover-lift era-la" data-era="la" data-format="digital" data-theme="noir">
-                    <a href="film-detail.html" class="block">
-                        <div class="relative aspect-[4/3] overflow-hidden rounded-sm mb-4 bg-black border border-white/10">
-                            <img src="https://static.photos/night/640x480/701" alt="Neon Prayer" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500">
-                            <div class="absolute top-4 left-4 bg-mdla-gold/90 backdrop-blur-sm text-mdla-black text-xs px-3 py-1 uppercase tracking-wider font-semibold">Los Angeles • 2024</div>
-                        </div>
-                        <div class="pl-4">
-                            <h3 class="font-serif text-2xl text-mdla-light group-hover:text-mdla-gold transition-colors mb-2">Neon Prayer</h3>
-                            <div class="flex items-center gap-3 text-xs text-mdla-gray uppercase tracking-widest mb-3">
-                                <span>Digital</span>
-                                <span class="w-1 h-1 rounded-full bg-mdla-gray"></span>
-                                <span>12 min</span>
-                                <span class="w-1 h-1 rounded-full bg-mdla-gray"></span>
-                                <span>Noir</span>
-                            </div>
-                            <p class="text-mdla-gray text-sm line-clamp-2 mb-3">Koreatown at 3am. An exercise in color theory and urban loneliness. Shot on Sony FX3.</p>
-                            <div class="flex items-center gap-2 text-xs text-mdla-gold">
-                                <i data-lucide="play-circle" class="w-4 h-4"></i>
-                                <span>Watch Film + Commentary</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-
-            </div>
+   <!-- Archive Grid -->
+<section class="py-12 px-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="film-grid">
             
-            <!-- Empty State -->
-            <div id="empty-state" class="hidden text-center py-24">
-                <i data-lucide="film" class="w-12 h-12 text-mdla-gray mx-auto mb-4"></i>
-                <p class="text-mdla-gray text-lg">No films match these filters.</p>
-                <button onclick="resetFilters()" class="mt-4 text-mdla-gold hover:text-white transition-colors text-sm uppercase tracking-widest">Reset Filters</button>
-            </div>
+            <!-- 2019 -->
+            <a href="film.html?id=TFUV0vHywks" class="film-card group bg-surface rounded-lg overflow-hidden border border-white/5" data-categories="short digital">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="https://img.youtube.com/vi/TFUV0vHywks/maxresdefault.jpg" alt="La Niña Que Sonrió" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
+                    <div class="absolute top-4 right-4">
+                        <span class="px-3 py-1 bg-accent-gold/90 text-background text-xs font-medium rounded">2019</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors">La Niña Que Sonrió</h3>
+                        <span class="text-xs text-text-muted">13 min</span>
+                    </div>
+                    <div class="flex gap-2 mb-3">
+                        <span class="text-xs uppercase tracking-wider text-accent-purple">Short</span>
+                        <span class="text-xs text-text-muted">•</span>
+                        <span class="text-xs uppercase tracking-wider text-text-muted">Digital</span>
+                    </div>
+                    <p class="text-text-secondary text-sm line-clamp-2">A dangerous journey across the U.S. Mexico border.</p>
+                </div>
+            </a>
+
+            <a href="film.html?id=c3Esi5q9lf4" class="film-card group bg-surface rounded-lg overflow-hidden border border-white/5" data-categories="short digital">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="https://img.youtube.com/vi/c3Esi5q9lf4/maxresdefault.jpg" alt="The Bechdel Test" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
+                    <div class="absolute top-4 right-4">
+                        <span class="px-3 py-1 bg-accent-gold/90 text-background text-xs font-medium rounded">2019</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors">The Bechdel Test</h3>
+                        <span class="text-xs text-text-muted">1 min</span>
+                    </div>
+                    <div class="flex gap-2 mb-3">
+                        <span class="text-xs uppercase tracking-wider text-accent-purple">PSA</span>
+                        <span class="text-xs text-text-muted">•</span>
+                        <span class="text-xs uppercase tracking-wider text-text-muted">Digital</span>
+                    </div><div class="absolute top-4 left-4">
+    <span class="px-2 py-1 bg-accent-purple/90 text-white text-xs font-medium rounded flex items-center gap-1">
+        <i data-lucide="message-square" class="w-3 h-3"></i>
+        Commentary
+    </span>
+</div>
+                    <p class="text-text-secondary text-sm line-clamp-2">Short PSA film exploring representation in cinema.</p>
+                </div>
+            </a>
+
+            <a href="film.html?id=Wyzq8hYsCGA" class="film-card group bg-surface rounded-lg overflow-hidden border border-white/5" data-categories="short digital">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="https://img.youtube.com/vi/Wyzq8hYsCGA/maxresdefault.jpg" alt="She Comes Home" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
+                    <div class="absolute top-4 right-4">
+                        <span class="px-3 py-1 bg-accent-gold/90 text-background text-xs font-medium rounded">2019</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors">Cigarette.</h3>
+                        <span class="text-xs text-text-muted">3 min</span>
+                    </div>
+                    <div class="flex gap-2 mb-3">
+                        <span class="text-xs uppercase tracking-wider text-accent-purple">Short</span>
+                        <span class="text-xs text-text-muted">•</span>
+                        <span class="text-xs uppercase tracking-wider text-text-muted">Digital</span>
+                    </div>
+                    <p class="text-text-secondary text-sm line-clamp-2">But something's waiting. Suspense short film.</p>
+                </div>
+            </a>
+
+            <!-- 2018 -->
+            <a href="film.html?id=aHviEO1A96M" class="film-card group bg-surface rounded-lg overflow-hidden border border-white/5" data-categories="short digital">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="https://img.youtube.com/vi/aHviEO1A96M/maxresdefault.jpg" alt="Born A Snake" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
+                    <div class="absolute top-4 right-4">
+                        <span class="px-3 py-1 bg-accent-gold/90 text-background text-xs font-medium rounded">2018</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors">Born A Snake</h3>
+                        <span class="text-xs text-text-muted">6 min</span>
+                    </div>
+                    <div class="flex gap-2 mb-3">
+                        <span class="text-xs uppercase tracking-wider text-accent-purple">Experimental</span>
+                        <span class="text-xs text-text-muted">•</span>
+                        <span class="text-xs uppercase tracking-wider text-text-muted">Digital</span><div class="absolute top-4 left-4">
+    <span class="px-2 py-1 bg-accent-purple/90 text-white text-xs font-medium rounded flex items-center gap-1">
+        <i data-lucide="message-square" class="w-3 h-3"></i>
+        Commentary
+    </span>
+</div>
+                    </div>
+                    <p class="text-text-secondary text-sm line-clamp-2">Award-winning experimental film exploring identity and transformation.</p>
+                </div>
+            </a>
+
+            <!-- 2014 -->
+            <a href="film.html?id=yKWftv-gqII" class="film-card group bg-surface rounded-lg overflow-hidden border border-white/5" data-categories="short digital">
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="https://img.youtube.com/vi/yKWftv-gqII/maxresdefault.jpg" alt="Banshee" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
+                    <div class="absolute top-4 right-4">
+                        <span class="px-3 py-1 bg-accent-gold/90 text-background text-xs font-medium rounded">2014</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors">Banshee</h3>
+                        <span class="text-xs text-text-muted">3 min</span>
+                    </div><div class="absolute top-4 left-4">
+    <span class="px-2 py-1 bg-accent-purple/90 text-white text-xs font-medium rounded flex items-center gap-1">
+        <i data-lucide="message-square" class="w-3 h-3"></i>
+        Commentary
+    </span>
+</div>
+                    <div class="flex gap-2 mb-3">
+                        <span class="text-xs uppercase tracking-wider text-accent-purple">Case Study</span>
+                        <span class="text-xs text-text-muted">•</span>
+                        <span class="text-xs uppercase tracking-wider text-text-muted">Multi-cam</span>
+                    </div>
+                    <p class="text-text-secondary text-sm line-clamp-2">Reverse-engineering TV action pacing. A case study in visual rhythm.</p>
+                </div>
+            </a>
+
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Footer -->
-    <footer class="border-t border-white/10 py-16 px-6 bg-mdla-black mt-24">
+    <footer class="py-12 px-6 border-t border-white/10 bg-surface mt-20">
         <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-xs text-mdla-gray">© 2024 MDLA Films. All rights reserved.</p>
-                <div class="flex gap-6">
-                    <a href="index.html" class="text-xs text-mdla-gray hover:text-mdla-gold transition-colors">Home</a>
-                    <a href="archive.html" class="text-xs text-mdla-gray hover:text-mdla-gold transition-colors">Archive</a>
-                    <a href="about.html" class="text-xs text-mdla-gray hover:text-mdla-gold transition-colors">Contact</a>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="md:col-span-2">
+                    <h3 class="font-serif text-2xl text-text-primary mb-4">MDLA Films</h3>
+                    <p class="text-text-secondary max-w-md">
+                        A director's archive. Films documented. Techniques analyzed.
+                    </p>
                 </div>
+                <div>
+                    <h4 class="text-text-primary font-medium mb-4 uppercase tracking-wider text-sm">Explore</h4>
+                    <ul class="space-y-2">
+                        <li><a href="archive.html" class="text-text-secondary hover:text-accent-gold transition-colors">The Archive</a></li>
+                        <li><a href="commentary.html" class="text-text-secondary hover:text-accent-gold transition-colors">Commentary</a></li>
+                        <li><a href="about.html" class="text-text-secondary hover:text-accent-gold transition-colors">About</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-text-primary font-medium mb-4 uppercase tracking-wider text-sm">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://www.youtube.com/@mdlafilms" target="_blank" class="text-text-secondary hover:text-red-500 transition-colors">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-text-secondary hover:text-accent-gold transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="mailto:contact@mdlafilms.com" class="text-text-secondary hover:text-accent-gold transition-colors">
+                            <i data-lucide="mail" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-text-muted text-sm">&copy; 2024 MDLA Films. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -367,18 +348,17 @@
     <script>
         lucide.createIcons();
         
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('mobile-menu-btn');
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         
-        menuBtn.addEventListener('click', () => {
+        mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
         
-        // Filter functionality
+        // Filtering
         const filterBtns = document.querySelectorAll('.filter-btn');
         const filmCards = document.querySelectorAll('.film-card');
-        const emptyState = document.getElementById('empty-state');
         
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -387,40 +367,21 @@
                 btn.classList.add('active');
                 
                 const filter = btn.getAttribute('data-filter');
-                let visibleCount = 0;
                 
                 filmCards.forEach(card => {
                     if (filter === 'all') {
                         card.classList.remove('hidden-film');
-                        visibleCount++;
                     } else {
-                        const era = card.getAttribute('data-era');
-                        const format = card.getAttribute('data-format');
-                        
-                        if (era === filter || format === filter) {
+                        const categories = card.getAttribute('data-categories');
+                        if (categories && categories.includes(filter)) {
                             card.classList.remove('hidden-film');
-                            visibleCount++;
                         } else {
                             card.classList.add('hidden-film');
                         }
                     }
                 });
-                
-                // Show/hide empty state
-                if (visibleCount === 0) {
-                    emptyState.classList.remove('hidden');
-                } else {
-                    emptyState.classList.add('hidden');
-                }
             });
         });
-        
-        function resetFilters() {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            filterBtns[0].classList.add('active');
-            filmCards.forEach(card => card.classList.remove('hidden-film'));
-            emptyState.classList.add('hidden');
-        }
     </script>
 </body>
 </html>
