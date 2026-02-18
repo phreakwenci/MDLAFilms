@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Jan-David Soutar - Director, Writer, and Actor. MD>LA Films Archive.">
+    <title>About — Jan-David Soutar</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#0a0a0f',
+                        surface: '#13131f',
+                        accent: {
+                            purple: '#6d28d9',
+                            gold: '#d4af37'
+                        },
+                        text: {
+                            primary: '#e5e5e5',
+                            secondary: '#94a3b8',
+                            muted: '#64748b'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { background-color: #0a0a0f; color: #e5e5e5; }
+        .film-grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 50; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .highlight-card { border-left: 1px solid rgba(212, 175, 55, 0.3); padding-left: 1.5rem; transition: all 0.3s ease; }
+        .highlight-card:hover { border-left: 1px solid #d4af37; background: rgba(255, 255, 255, 0.02); }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <div class="film-grain"></div>
+    
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-background/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="index.html" class="font-serif text-2xl text-text-primary hover:text-accent-gold transition-colors">MD>LA Films</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="archive.html" class="text-text-secondary hover:text-text-primary uppercase text-sm tracking-wider">Archive</a>
+                <a href="commentary.html" class="text-text-secondary hover:text-text-primary uppercase text-sm tracking-wider">Commentary</a>
+                <a href="about.html" class="text-text-primary uppercase text-sm tracking-wider border-b-2 border-accent-gold pb-1">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-40 pb-20 px-6 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-end">
+            <div>
+                <h1 class="font-serif text-6xl md:text-8xl text-text-primary mb-6">Jan-David Soutar</h1>
+                <p class="text-accent-gold uppercase tracking-[0.3em] text-sm mb-8">Writer / Director / Actor</p>
+                <p class="text-text-secondary text-xl font-light leading-relaxed">
+                    A storyteller focused on technical discipline and the exploration of identity. From a career in front of the camera to an award-winning transition behind it, Jan-David builds narratives that challenge the intersection of the surreal and the mundane.
+                </p>
+            </div>
+            <div class="hidden md:block border-t border-white/10 pt-8">
+                <div class="flex flex-col space-y-4">
+                    <div class="flex justify-between text-sm"><span class="text-text-muted">Directing Focus</span> <span class="text-text-primary">Technical Architecture</span></div>
+                    <div class="flex justify-between text-sm"><span class="text-text-muted">Writing Motif</span> <span class="text-text-primary">Identity & Folklore</span></div>
+                    <div class="flex justify-between text-sm"><span class="text-text-muted">DBA</span> <span class="text-text-primary">MDLA Productions</span></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20 px-6 bg-surface/30">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-serif text-3xl text-text-primary mb-12 uppercase tracking-widest">Selected Highlights</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="highlight-card">
+                    <h3 class="text-text-primary font-bold mb-2">Best Short Screenplay</h3>
+                    <p class="text-text-muted text-sm mb-4">CSU Media Arts Festival (2024)</p>
+                    <p class="text-text-secondary text-sm">Winner for "Naya and the Legend of the Stone Woman," a contemporary exploration of Cherokee legend.</p>
+                </div>
+                <div class="highlight-card">
+                    <h3 class="text-text-primary font-bold mb-2">Best Experimental Film</h3>
+                    <p class="text-text-muted text-sm mb-4">#FilmicFest Worldwide</p>
+                    <p class="text-text-secondary text-sm">Awarded for "Born a Snake" (2019), recognized for its atmospheric use of lighting and psychological tension.</p>
+                </div>
+                <div class="highlight-card">
+                    <h3 class="text-text-primary font-bold mb-2">Screen Credits</h3>
+                    <p class="text-text-muted text-sm mb-4">Banshee, Outsiders, & more</p>
+                    <p class="text-text-secondary text-sm">Extensive career as an actor, bringing professional set experience to the director's chair.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-12">
+            <div class="md:w-1/3">
+                <h2 class="font-serif text-4xl text-text-primary">Current Development</h2>
+                <p class="text-text-muted mt-4 text-sm uppercase tracking-widest">In Production & Pre-Pro</p>
+            </div>
+            <div class="md:w-2/3 space-y-12">
+                <div class="border-b border-white/5 pb-8">
+                    <h3 class="text-text-primary text-xl font-bold mb-2 italic">Mall Trip</h3>
+                    <p class="text-text-secondary leading-relaxed">A surrealist, psychedelic journey through Americana exploring consumerism and identity.</p>
+                </div>
+                <div class="border-b border-white/5 pb-8">
+                    <h3 class="text-text-primary text-xl font-bold mb-2 italic">Naya and the Legend of the Stone Woman</h3>
+                    <p class="text-text-secondary leading-relaxed">An Appalachian folktale brought to life, examining the impact of human change on ancient landscapes.</p>
+                </div>
+                <div class="pb-8">
+                    <h3 class="text-text-primary text-xl font-bold mb-2 italic">Oh Constantine!</h3>
+                    <p class="text-text-secondary leading-relaxed">Original stage production exploring surreal narrative structures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-accent-purple/5">
+        <div class="max-w-3xl mx-auto text-center">
+            <i data-lucide="quote" class="w-12 h-12 text-accent-purple/30 mx-auto mb-8"></i>
+            <blockquote class="font-serif text-3xl text-text-primary leading-tight mb-8">
+                "I believe in the capacity of art to heal, disrupt, and transform. My work seeks to find the unfamiliar in the ordinary."
+            </blockquote>
+        </div>
+    </section>
+
+    <footer class="py-12 px-6 border-t border-white/10 text-center">
+        <div class="flex justify-center space-x-8 mb-8">
+            <a href="mailto:contact@jandavidsoutar.com" class="hover:text-accent-gold transition-colors text-text-muted"><i data-lucide="mail"></i></a>
+            <a href="https://youtube.com/@mdlafilms" target="_blank" class="hover:text-red-500 transition-colors text-text-muted"><i data-lucide="youtube"></i></a>
+            <a href="https://www.jandavidsoutar.com" target="_blank" class="hover:text-accent-gold transition-colors text-text-muted"><i data-lucide="globe"></i></a>
+        </div>
+        <p class="text-text-muted text-xs uppercase tracking-widest">© 2026 MD>LA Productions — Jan-David Soutar</p>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
