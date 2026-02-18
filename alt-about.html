@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About MDLA Films - The journey from Maryland to Los Angeles. A technical archive of filmmaking craft.">
+    <title>About — MD>LA Films</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#0a0a0f',
+                        surface: '#13131f',
+                        accent: {
+                            purple: '#6d28d9',
+                            gold: '#d4af37'
+                        },
+                        text: {
+                            primary: '#e5e5e5',
+                            secondary: '#94a3b8',
+                            muted: '#64748b'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { background-color: #0a0a0f; color: #e5e5e5; }
+        .film-grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 50; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .manifesto-line { border-left: 2px solid #6d28d9; padding-left: 2rem; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <div class="film-grain"></div>
+    
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-background/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="index.html" class="font-serif text-2xl text-text-primary hover:text-accent-gold transition-colors">MD>LA Films</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="archive.html" class="text-text-secondary hover:text-text-primary uppercase text-sm tracking-wider">Archive</a>
+                <a href="commentary.html" class="text-text-secondary hover:text-text-primary uppercase text-sm tracking-wider">Commentary</a>
+                <a href="about.html" class="text-text-primary uppercase text-sm tracking-wider border-b-2 border-accent-gold pb-1">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-40 pb-20 px-6 max-w-6xl mx-auto">
+        <h1 class="font-serif text-6xl md:text-8xl text-text-primary mb-8 leading-tight">
+            Perspective <span class="text-accent-gold">></span> Infrastructure
+        </h1>
+        <p class="text-text-secondary text-2xl max-w-3xl font-light leading-relaxed">
+            MDLA is a technical film archive dedicated to the study of craft, constraint, and the transition from the Atlantic to the Pacific.
+        </p>
+    </header>
+
+    <section class="py-20 px-6 bg-surface/30 border-y border-white/5">
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="font-serif text-4xl text-text-primary mb-6">The MD > LA Logic</h2>
+                <div class="space-y-6 text-text-secondary leading-relaxed">
+                    <p>
+                        Maryland (MD) represents the <strong>Source</strong>. It is the place of origin, the foundation of a darker, atmospheric storytelling style rooted in regional reality.
+                    </p>
+                    <p>
+                        Los Angeles (LA) represents the <strong>Instrument</strong>. It is the infrastructure, the tools, and the professional arena where the vision is executed.
+                    </p>
+                    <p class="italic text-accent-gold">
+                        The philosophy is simple: The vision (MD) must always remain greater than (>) the industry (LA).
+                    </p>
+                </div>
+            </div>
+            <div class="aspect-square bg-surface border border-white/10 rounded-2xl flex items-center justify-center p-12 text-center">
+                <span class="font-serif text-8xl text-accent-purple opacity-50">MD > LA</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 max-w-4xl mx-auto">
+        <h2 class="font-serif text-3xl text-text-primary mb-12 text-center uppercase tracking-[0.2em]">The Methodology</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+            <div>
+                <i data-lucide="database" class="w-8 h-8 mx-auto mb-4 text-accent-purple"></i>
+                <h3 class="text-text-primary font-bold mb-2">The Archive</h3>
+                <p class="text-text-muted text-sm">A chronological index of 12 primary films serving as a technical baseline.</p>
+            </div>
+            <div>
+                <i data-lucide="mic" class="w-8 h-8 mx-auto mb-4 text-accent-purple"></i>
+                <h3 class="text-text-primary font-bold mb-2">The Commentary</h3>
+                <p class="text-text-muted text-sm">Real-time technical analysis focusing on architecture over dialogue.</p>
+            </div>
+            <div>
+                <i data-lucide="book-open" class="w-8 h-8 mx-auto mb-4 text-accent-purple"></i>
+                <h3 class="text-text-primary font-bold mb-2">The Notebook</h3>
+                <p class="text-text-muted text-sm">Raw blocking diagrams, lens choices, and structural reflections.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-surface/50">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="font-serif text-3xl text-text-primary mb-8">Jan-David Soutar</h2>
+            <div class="manifesto-line text-text-secondary text-lg leading-relaxed space-y-6">
+                <p>
+                    I am a filmmaker and technical searcher. My work explores the darker possibilities of the human condition through a lens of structural discipline. 
+                </p>
+                <p>
+                    Influenced by the pacing of Stephen King and the technical constraints of early independent cinema, I believe that the director's job is not to find "the magic," but to build the <strong>Technical Architecture</strong> that allows magic to happen.
+                </p>
+                <p>
+                    MDLA Films is not a portfolio. It is an open-source database of a director's education.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-6 border-t border-white/10 text-center">
+        <p class="text-text-muted text-xs tracking-widest uppercase mb-4">Established in Maryland — Operating in Los Angeles</p>
+        <div class="flex justify-center space-x-6 text-text-muted">
+            <a href="mailto:contact@mdlafilms.com" class="hover:text-accent-gold transition-colors"><i data-lucide="mail" class="w-5 h-5"></i></a>
+            <a href="https://youtube.com/@mdlafilms" target="_blank" class="hover:text-red-500 transition-colors"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
