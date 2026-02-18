@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MDLA Films Archive - Complete chronological filmography with director's commentary and technical details.">
+    <meta name="description"
+        content="MDLA Films Archive - Complete chronological filmography with director's commentary and technical details.">
     <title>Archive — MDLA Films</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -38,13 +42,13 @@
             }
         }
     </script>
-    
+
     <style>
         body {
             background-color: #0a0a0f;
             color: #e5e5e5;
         }
-        
+
         .film-grain {
             position: fixed;
             top: 0;
@@ -56,20 +60,20 @@
             opacity: 0.03;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
-        
+
         .film-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         .film-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 20px 40px -15px rgba(109, 40, 217, 0.15);
         }
-        
+
         .nav-link {
             position: relative;
         }
-        
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -80,49 +84,54 @@
             background-color: #d4af37;
             transition: width 0.3s ease;
         }
-        
+
         .nav-link:hover::after {
             width: 100%;
         }
-        
+
         .filter-btn {
             transition: all 0.3s ease;
         }
-        
+
         .filter-btn.active {
             background-color: #6d28d9;
             color: white;
             border-color: #6d28d9;
         }
-        
+
         .hidden-film {
             display: none;
         }
     </style>
 </head>
+
 <body class="font-sans antialiased selection:bg-accent-purple selection:text-white">
     <div class="film-grain"></div>
-    
-    <!-- Navigation -->
+
     <nav class="fixed top-0 left-0 right-0 z-40 bg-background/90 backdrop-blur-md border-b border-white/10">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0">
-                    <a href="index.html" class="font-serif text-2xl font-medium tracking-tight text-text-primary hover:text-accent-gold transition-colors">
-                        MDLA Films
+                    <a href="index.html"
+                        class="font-serif text-2xl font-medium tracking-tight text-text-primary hover:text-accent-gold transition-colors">
+                        MD>LA Films
                     </a>
                 </div>
-                
+
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="archive.html" class="nav-link text-text-primary transition-colors text-sm uppercase tracking-wider border-b-2 border-accent-gold pb-1">Archive</a>
-                    <a href="commentary.html" class="nav-link text-text-secondary hover:text-text-primary transition-colors text-sm uppercase tracking-wider">Commentary</a>
-                    <a href="about.html" class="nav-link text-text-secondary hover:text-text-primary transition-colors text-sm uppercase tracking-wider">About</a>
-                    <a href="https://www.youtube.com/@mdlafilms" target="_blank" class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded transition-colors">
+                    <a href="archive.html"
+                        class="nav-link text-text-primary transition-colors text-sm uppercase tracking-wider border-b-2 border-accent-gold pb-1">Archive</a>
+                    <a href="commentary.html"
+                        class="nav-link text-text-secondary hover:text-text-primary transition-colors text-sm uppercase tracking-wider">Commentary</a>
+                    <a href="about.html"
+                        class="nav-link text-text-secondary hover:text-text-primary transition-colors text-sm uppercase tracking-wider">About</a>
+                    <a href="https://www.youtube.com/@mdlafilms" target="_blank"
+                        class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded transition-colors">
                         <i data-lucide="youtube" class="w-4 h-4 mr-2"></i>
                         Subscribe
                     </a>
                 </div>
-                
+
                 <div class="md:hidden">
                     <button id="mobile-menu-btn" class="text-text-primary hover:text-accent-gold transition-colors">
                         <i data-lucide="menu" class="w-6 h-6"></i>
@@ -130,43 +139,43 @@
                 </div>
             </div>
         </div>
-        
+
         <div id="mobile-menu" class="hidden md:hidden bg-surface border-b border-white/10">
             <div class="px-6 py-4 space-y-4">
                 <a href="archive.html" class="block text-text-primary">Archive</a>
                 <a href="commentary.html" class="block text-text-secondary hover:text-text-primary">Commentary</a>
                 <a href="about.html" class="block text-text-secondary hover:text-text-primary">About</a>
-                <a href="https://www.youtube.com/@mdlafilms" target="_blank" class="block text-red-500">YouTube Subscribe</a>
+                <a href="https://www.youtube.com/@mdlafilms" target="_blank" class="block text-red-500">YouTube
+                    Subscribe</a>
             </div>
         </div>
     </nav>
 
-    <!-- Header -->
     <section class="pt-32 pb-12 px-6">
         <div class="max-w-7xl mx-auto">
             <h1 class="font-serif text-5xl md:text-6xl text-text-primary mb-4">The Archive</h1>
-            <p class="text-text-secondary text-lg max-w-2xl">Chronological filmography. Every project documented with technical details, reflections, and behind-the-scenes analysis.</p>
+            <p class="text-text-secondary text-lg max-w-2xl">Chronological filmography. Every project documented with
+                technical details, reflections, and behind-the-scenes analysis.</p>
         </div>
     </section>
 
-    <!-- Filters -->
     <section class="px-6 pb-8 sticky top-20 bg-background/95 backdrop-blur-md z-30 border-b border-white/5">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-wrap gap-3 items-center">
                 <span class="text-text-muted text-sm uppercase tracking-wider mr-4">Filter:</span>
-                
+
                 <button class="filter-btn active px-4 py-2 border border-white/20 rounded text-sm text-text-secondary hover:border-accent-gold hover:text-accent-gold" data-filter="all">
                     All Projects
                 </button>
-                
+
                 <button class="filter-btn px-4 py-2 border border-white/20 rounded text-sm text-text-secondary hover:border-accent-gold hover:text-accent-gold" data-filter="short">
                     Shorts
                 </button>
-                
+
                 <button class="filter-btn px-4 py-2 border border-white/20 rounded text-sm text-text-secondary hover:border-accent-gold hover:text-accent-gold" data-filter="experimental">
                     Experimental
                 </button>
-                
+
                 <button class="filter-btn px-4 py-2 border border-white/20 rounded text-sm text-text-secondary hover:border-accent-gold hover:text-accent-gold" data-filter="casestudy">
                     Case Studies
                 </button>
@@ -174,23 +183,26 @@
         </div>
     </section>
 
-    <!-- Archive Grid -->
     <section class="py-12 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="film-grid">
-                
-                <!-- 2019: La Niña Que Sonrió -->
-                <a href="https://youtu.be/TFUV0vHywks?si=_tYNXFylika0SGii" class="film-card group bg-surface rounded-lg overflow-hidden border border-white/5" data-categories="short digital">
+
+                <div class="film-card group bg-surface rounded-lg overflow-hidden border border-white/5 relative"
+                    data-categories="short digital">
+                    <a href="javascript:void(0)" onclick="openModal('TFUV0vHywks')" class="absolute inset-0 z-10"
+                        aria-label="Play Video"></a>
                     <div class="aspect-video relative overflow-hidden">
                         <img src="https://img.youtube.com/vi/TFUV0vHywks/maxresdefault.jpg" alt="La Niña Que Sonrió" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
-                        <div class="absolute top-4 right-4">
+                        <div class="absolute top-4 right-4 z-20">
                             <span class="px-3 py-1 bg-accent-gold/90 text-background text-xs font-medium rounded">2019</span>
                         </div>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors">La Niña Que Sonrió</h3>
+                            <h3
+                                class="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors">
+                                La Niña Que Sonrió</h3>
                             <span class="text-xs text-text-muted">13 min</span>
                         </div>
                         <div class="flex gap-2 mb-3">
@@ -198,33 +210,35 @@
                             <span class="text-xs text-text-muted">•</span>
                             <span class="text-xs uppercase tracking-wider text-text-muted">Digital</span>
                         </div>
-                        <p class="text-text-secondary text-sm line-clamp-2">A dangerous journey across the U.S. Mexico border.</p>
+                        <p class="text-text-secondary text-sm line-clamp-2">A dangerous journey across the U.S. Mexico
+                            border.</p>
                     </div>
-                </a>
+                </div>
 
-                <!-- 2019: The Bechdel Test WITH COMMENTARY -->
-                <a href="film.html?id=c3Esi5q9lf4" class="film-card group bg-surface rounded-lg overflow-hidden border border-white/5"
+                <div class="film-card group bg-surface rounded-lg overflow-hidden border border-white/5 relative"
                     data-categories="short digital">
+                    <a href="javascript:void(0)" onclick="openModal('c3Esi5q9lf4')" class="absolute inset-0 z-10"></a>
                     <div class="aspect-video relative overflow-hidden">
                         <img src="https://img.youtube.com/vi/c3Esi5q9lf4/maxresdefault.jpg" alt="The Bechdel Test" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
-                
-                        <!-- Commentary Badge - NOW A SPAN -->
-                        <span onclick="window.open('https://www.youtube.com/watch?v=o4kM0FRxDPM', '_blank'); event.stopPropagation();" class="absolute top-4 left-4 group/badge cursor-pointer">
+
+                        <span onclick="openModal('o4kM0FRxDPM'); event.stopPropagation();"
+                              class="absolute top-4 left-4 z-20 group/badge cursor-pointer">
                             <span class="px-3 py-2 bg-accent-purple hover:bg-accent-purpleDark text-white text-xs font-medium rounded inline-flex items-center gap-2 transition-all shadow-lg hover:shadow-xl hover:scale-105">
                                 <i data-lucide="message-square" class="w-3 h-3"></i>
                                 <span class="hidden group-hover/badge:inline">Watch </span>Commentary
                         </span>
                         </span>
-                
-                        <div class="absolute top-4 right-4">
+
+                        <div class="absolute top-4 right-4 z-20">
                             <span class="px-3 py-1 bg-accent-gold/90 text-background text-xs font-medium rounded">2019</span>
                         </div>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors">The Bechdel
-                                Test</h3>
+                            <h3
+                                class="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors">
+                                The Bechdel Test</h3>
                             <span class="text-xs text-text-muted">1 min</span>
                         </div>
                         <div class="flex gap-2 mb-3">
@@ -232,21 +246,26 @@
                             <span class="text-xs text-text-muted">•</span>
                             <span class="text-xs uppercase tracking-wider text-text-muted">Digital</span>
                         </div>
-                        <p class="text-text-secondary text-sm line-clamp-2">Short PSA film exploring representation in cinema.</p>
+                        <p class="text-text-secondary text-sm line-clamp-2">Short PSA film exploring representation in
+                            cinema.</p>
                     </div>
-                </a>
-                <!-- 2019: Cigarette -->
-                <a href="film.html?id=Wyzq8hYsCGA" class="film-card group bg-surface rounded-lg overflow-hidden border border-white/5" data-categories="short digital">
+                </div>
+
+                <div class="film-card group bg-surface rounded-lg overflow-hidden border border-white/5 relative"
+                    data-categories="short digital">
+                    <a href="javascript:void(0)" onclick="openModal('Wyzq8hYsCGA')" class="absolute inset-0 z-10"></a>
                     <div class="aspect-video relative overflow-hidden">
                         <img src="https://img.youtube.com/vi/Wyzq8hYsCGA/maxresdefault.jpg" alt="Cigarette" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
-                        <div class="absolute top-4 right-4">
+                        <div class="absolute top-4 right-4 z-20">
                             <span class="px-3 py-1 bg-accent-gold/90 text-background text-xs font-medium rounded">2019</span>
                         </div>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors">Cigarette</h3>
+                            <h3
+                                class="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors">
+                                Cigarette</h3>
                             <span class="text-xs text-text-muted">3 min</span>
                         </div>
                         <div class="flex gap-2 mb-3">
@@ -256,31 +275,32 @@
                         </div>
                         <p class="text-text-secondary text-sm line-clamp-2">Suspense short film.</p>
                     </div>
-                </a>
+                </div>
 
-                <!-- 2018: Born A Snake WITH COMMENTARY -->
-                <a href="film.html?id=aHviEO1A96M" class="film-card group bg-surface rounded-lg overflow-hidden border border-white/5"
+                <div class="film-card group bg-surface rounded-lg overflow-hidden border border-white/5 relative"
                     data-categories="short experimental digital">
+                    <a href="javascript:void(0)" onclick="openModal('aHviEO1A96M')" class="absolute inset-0 z-10"></a>
                     <div class="aspect-video relative overflow-hidden">
                         <img src="https://img.youtube.com/vi/aHviEO1A96M/maxresdefault.jpg" alt="Born A Snake" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
-                
-                        <!-- Commentary Badge - NOW A SPAN -->
-                        <span onclick="window.open('https://www.youtube.com/watch?v=TJacWZcND6U', '_blank'); event.stopPropagation();" class="absolute top-4 left-4 group/badge cursor-pointer">
+
+                        <span onclick="openModal('TJacWZcND6U'); event.stopPropagation();"
+                              class="absolute top-4 left-4 z-20 group/badge cursor-pointer">
                             <span class="px-3 py-2 bg-accent-purple hover:bg-accent-purpleDark text-white text-xs font-medium rounded inline-flex items-center gap-2 transition-all shadow-lg hover:shadow-xl hover:scale-105">
                                 <i data-lucide="message-square" class="w-3 h-3"></i>
                                 <span class="hidden group-hover/badge:inline">Watch </span>Commentary
                         </span>
                         </span>
-                
-                        <div class="absolute top-4 right-4">
+
+                        <div class="absolute top-4 right-4 z-20">
                             <span class="px-3 py-1 bg-accent-gold/90 text-background text-xs font-medium rounded">2018</span>
                         </div>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors">Born A Snake
-                            </h3>
+                            <h3
+                                class="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors">
+                                Born A Snake</h3>
                             <span class="text-xs text-text-muted">6 min</span>
                         </div>
                         <div class="flex gap-2 mb-3">
@@ -288,33 +308,34 @@
                             <span class="text-xs text-text-muted">•</span>
                             <span class="text-xs uppercase tracking-wider text-text-muted">Digital</span>
                         </div>
-                        <p class="text-text-secondary text-sm line-clamp-2">Award-winning experimental film exploring identity and
-                            transformation.</p>
+                        <p class="text-text-secondary text-sm line-clamp-2">Award-winning experimental film exploring
+                            identity and transformation.</p>
                     </div>
-                </a>
+                </div>
 
-                <!-- 2014: Banshee WITH COMMENTARY -->
-                <a href="film.html?id=yKWftv-gqII" class="film-card group bg-surface rounded-lg overflow-hidden border border-white/5"
+                <div class="film-card group bg-surface rounded-lg overflow-hidden border border-white/5 relative"
                     data-categories="short casestudy digital">
+                    <a href="javascript:void(0)" onclick="openModal('yKWftv-gqII')" class="absolute inset-0 z-10"></a>
                     <div class="aspect-video relative overflow-hidden">
                         <img src="https://img.youtube.com/vi/yKWftv-gqII/maxresdefault.jpg" alt="Banshee" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
-                
-                        <!-- Commentary Badge - NOW A SPAN -->
-                        <span onclick="window.open('https://www.youtube.com/watch?v=h94OryxSjkA', '_blank'); event.stopPropagation();" class="absolute top-4 left-4 group/badge cursor-pointer">
+
+                        <span onclick="openModal('h94OryxSjkA'); event.stopPropagation();" class="absolute top-4 left-4 z-20 group/badge cursor-pointer">
                             <span class="px-3 py-2 bg-accent-purple hover:bg-accent-purpleDark text-white text-xs font-medium rounded inline-flex items-center gap-2 transition-all shadow-lg hover:shadow-xl hover:scale-105">
                                 <i data-lucide="message-square" class="w-3 h-3"></i>
                                 <span class="hidden group-hover/badge:inline">Watch </span>Commentary
                         </span>
                         </span>
-                
-                        <div class="absolute top-4 right-4">
+
+                        <div class="absolute top-4 right-4 z-20">
                             <span class="px-3 py-1 bg-accent-gold/90 text-background text-xs font-medium rounded">2014</span>
                         </div>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors">Banshee</h3>
+                            <h3
+                                class="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors">
+                                Banshee</h3>
                             <span class="text-xs text-text-muted">3 min</span>
                         </div>
                         <div class="flex gap-2 mb-3">
@@ -322,16 +343,15 @@
                             <span class="text-xs text-text-muted">•</span>
                             <span class="text-xs uppercase tracking-wider text-text-muted">Multi-cam</span>
                         </div>
-                        <p class="text-text-secondary text-sm line-clamp-2">Reverse-engineering TV action pacing. A case study in visual
-                            rhythm.</p>
+                        <p class="text-text-secondary text-sm line-clamp-2">Reverse-engineering TV action pacing. A case
+                            study in visual rhythm.</p>
                     </div>
-                </a>
+                </div>
 
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-12 px-6 border-t border-white/10 bg-surface mt-20">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
@@ -344,21 +364,27 @@
                 <div>
                     <h4 class="text-text-primary font-medium mb-4 uppercase tracking-wider text-sm">Explore</h4>
                     <ul class="space-y-2">
-                        <li><a href="archive.html" class="text-text-secondary hover:text-accent-gold transition-colors">The Archive</a></li>
-                        <li><a href="commentary.html" class="text-text-secondary hover:text-accent-gold transition-colors">Commentary</a></li>
-                        <li><a href="about.html" class="text-text-secondary hover:text-accent-gold transition-colors">About</a></li>
+                        <li><a href="archive.html"
+                                class="text-text-secondary hover:text-accent-gold transition-colors">The Archive</a>
+                        </li>
+                        <li><a href="commentary.html"
+                                class="text-text-secondary hover:text-accent-gold transition-colors">Commentary</a></li>
+                        <li><a href="about.html"
+                                class="text-text-secondary hover:text-accent-gold transition-colors">About</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-text-primary font-medium mb-4 uppercase tracking-wider text-sm">Connect</h4>
                     <div class="flex space-x-4">
-                        <a href="https://www.youtube.com/@mdlafilms" target="_blank" class="text-text-secondary hover:text-red-500 transition-colors">
+                        <a href="https://www.youtube.com/@mdlafilms" target="_blank"
+                            class="text-text-secondary hover:text-red-500 transition-colors">
                             <i data-lucide="youtube" class="w-5 h-5"></i>
                         </a>
                         <a href="#" class="text-text-secondary hover:text-accent-gold transition-colors">
                             <i data-lucide="instagram" class="w-5 h-5"></i>
                         </a>
-                        <a href="mailto:contact@mdlafilms.com" class="text-text-secondary hover:text-accent-gold transition-colors">
+                        <a href="mailto:contact@mdlafilms.com"
+                            class="text-text-secondary hover:text-accent-gold transition-colors">
                             <i data-lucide="mail" class="w-5 h-5"></i>
                         </a>
                     </div>
@@ -369,22 +395,53 @@
             </div>
         </div>
     </footer>
-<div id="video-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 md:p-10">
-    <div class="absolute inset-0 bg-background/95 backdrop-blur-xl" onclick="closeModal()"></div>
 
-    <div class="relative w-full max-w-5xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-white/10 scale-95 transition-transform duration-300"
-        id="modal-container">
-        <button onclick="closeModal()" class="absolute top-4 right-4 z-[110] text-white/50 hover:text-white transition-colors">
-            <i data-lucide="x" class="w-8 h-8"></i>
-        </button>
-        <iframe id="video-player" class="w-full h-full" src="" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+    <div id="video-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 md:p-10">
+        <div class="absolute inset-0 bg-background/95 backdrop-blur-xl" onclick="closeModal()"></div>
+
+        <div class="relative w-full max-w-5xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-white/10 scale-95 transition-transform duration-300"
+            id="modal-container">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-[110] text-white/50 hover:text-white transition-colors">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            <iframe id="video-player" class="w-full h-full" src="" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
     </div>
-</div>
+
     <script>
         lucide.createIcons();
         
+        // Video Modal Logic
+        const modal = document.getElementById('video-modal');
+        const player = document.getElementById('video-player');
+        const container = document.getElementById('modal-container');
+
+        function openModal(videoId) {
+            player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                container.classList.remove('scale-95');
+                container.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            container.classList.remove('scale-100');
+            container.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                player.src = "";
+                document.body.style.overflow = 'auto';
+            }, 200);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
         // Mobile menu
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -399,7 +456,6 @@
         
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Update active state
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 
@@ -421,4 +477,5 @@
         });
     </script>
 </body>
+
 </html>
